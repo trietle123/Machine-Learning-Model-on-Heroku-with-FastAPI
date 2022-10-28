@@ -1,6 +1,5 @@
 # Script to test API
-import json
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 from main import app
 
 client = TestClient(app)
