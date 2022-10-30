@@ -14,7 +14,7 @@ data= {
         "sex": "Male",
         "capital_gain": 0,
         "capital_loss": 0,
-        "hours_per_week": 70,
+        "hours_per_week": 20,
         "native_country": "United-States"
 }
 response = requests.post('https://attempt-to-heroku.herokuapp.com/predict/', data=json.dumps(data))
