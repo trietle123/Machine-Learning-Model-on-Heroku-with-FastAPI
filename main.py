@@ -2,15 +2,15 @@
 import os
 import pandas as pd
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List
 from starter.ml.data import process_data
 from starter.ml.model import inference
+import pickle
 
-#Import model and encoder
-model = pd.read_pickle(r"model/model.pkl")
-Encoder = pd.read_pickle(r"model/encoder.pkl")
-
+global used_model, used_encoder
+used_model = pickle.load(open("./model/model.pkl", "rb"))
+used_encoder = pickle.load(open("./model/encoder.pkl", "rb"))
 #Init the FastAPI instance
 app = FastAPI()
 
@@ -23,23 +23,23 @@ if "DYNO" in os.environ and os.path.isdir(".dvc"):
 
 #Create pydantic model
 class DataIn(BaseModel):
-    age : int = 52
-    workclass : str =  "Self-emp-not-inc"
-    fnlgt : int = 209642
-    education : str = "HS-grad"
-    education_num : int = 9
-    marital_status : str = "Married-civ-spouse"
-    occupation : str = "Exec-managerial"
-    relationship : str = "Husband"
-    race : str = "White"
-    sex : str = "Male"
-    capital_gain : int = 0
-    capital_loss : int = 0
-    hours_per_week : int = 45
-    native_country : str = "United-States"
+    age : int = Field(..., example=45)
+    workclass : str =  Field(..., example="Self-emp-not-inc")
+    fnlgt : int = Field(..., example=209642)
+    education : str = Field(..., example="HS-grad")
+    education_num : int = Field(..., example=9)
+    marital_status : str = Field(..., example="Married-civ-spouse")
+    occupation : str = Field(..., example="Exec-managerial")
+    relationship : str = Field(..., example="Husband")
+    race : str = Field(..., example="White")
+    sex : str = Field(..., example="Male")
+    capital_gain : int = Field(..., example=0)
+    capital_loss : int = Field(..., example=0)
+    hours_per_week : int = Field(..., example=45)
+    native_country : str = Field(..., example="United-States")
 
 class DataOut(BaseModel):
-    forecast: str = "Income > 50k"
+    forecast: str = Field(..., example="Income > 50k")
 
 # Welcome page
 @app.get("/")
@@ -50,6 +50,15 @@ async def root():
 async def welcome():
     return {"Welcome": "Attempted to model"}
 
+@app.on_event("startup")
+async def startup_event(): 
+    used_model = pickle.load(open("./model/model.pkl", "rb"))
+    used_encoder = pickle.load(open("./model/encoder.pkl", "rb"))
+
+@app.on_event("shutdown")
+def shutdown_event():
+    return {"Close model and shut down"}
+    
 @app.post("/predict", response_model=DataOut)
 async def get_prediction(payload: DataIn):
 
@@ -93,9 +102,9 @@ async def get_prediction(payload: DataIn):
     "sex",
     "native-country",
 ]
-    X_processed, y_processed, encoder, lb = process_data(df, categorical_features=cat_features, training=False,encoder=Encoder)
+    X_processed, _, _, _ = process_data(df, categorical_features=cat_features, training=False, encoder=used_encoder)
      
-    prediction_outcome = inference(model, X_processed)
+    prediction_outcome = inference(used_model, X_processed)
     
     
     if prediction_outcome == 0:
