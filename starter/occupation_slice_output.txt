@@ -1,0 +1,76 @@
+*****Performance results for the slided feature occupation as follows:*****
+
+===Adm-clerical===
+Precision: 0.9504132231404959
+Recall: 0.9072978303747534
+fbeta: 0.9283551967709385
+
+===Exec-managerial===
+Precision: 0.9560776302349336
+Recall: 0.9512195121951219
+fbeta: 0.9536423841059603
+
+===Handlers-cleaners===
+Precision: 1.0
+Recall: 0.8372093023255814
+fbeta: 0.9113924050632911
+
+===Prof-specialty===
+Precision: 0.9502939604489578
+Recall: 0.956428187197418
+fbeta: 0.9533512064343163
+
+===Other-service===
+Precision: 0.9736842105263158
+Recall: 0.8102189781021898
+fbeta: 0.8844621513944223
+
+===Sales===
+Precision: 0.9551760939167556
+Recall: 0.9104781281790437
+fbeta: 0.9322916666666667
+
+===Craft-repair===
+Precision: 0.9532163742690059
+Recall: 0.8772874058127018
+fbeta: 0.913677130044843
+
+===Transport-moving===
+Precision: 0.951048951048951
+Recall: 0.85
+fbeta: 0.8976897689768978
+
+===Farming-fishing===
+Precision: 0.9789473684210527
+Recall: 0.808695652173913
+fbeta: 0.8857142857142857
+
+===Machine-op-inspct===
+Precision: 0.9382716049382716
+Recall: 0.912
+fbeta: 0.9249492900608518
+
+===Tech-support===
+Precision: 0.9712230215827338
+Recall: 0.9540636042402827
+fbeta: 0.9625668449197862
+
+===?===
+Precision: 0.9502762430939227
+Recall: 0.900523560209424
+fbeta: 0.9247311827956989
+
+===Protective-serv===
+Precision: 0.9330143540669856
+Recall: 0.9241706161137441
+fbeta: 0.9285714285714285
+
+===Armed-Forces===
+Precision: 1.0
+Recall: 1.0
+fbeta: 1.0
+
+===Priv-house-serv===
+Precision: 1.0
+Recall: 1.0
+fbeta: 1.0

@@ -46,5 +46,6 @@ if __name__ == "__main__":
     _model = pd.read_pickle(r"model/model.pkl")
     _encoder = pd.read_pickle(r"model/encoder.pkl")
     _lb = pd.read_pickle(r"model/lb.pkl")
-    #test with column occupation
+    #test with column occupation and race
     get_slice_performance(_model, _data, "occupation", _encoder,_lb)
+    get_slice_performance(_model, _data, "race", _encoder,_lb)

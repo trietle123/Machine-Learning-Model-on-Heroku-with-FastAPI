@@ -1,0 +1,26 @@
+*****Performance results for the slided feature race as follows:*****
+
+===White===
+Precision: 0.9536915683704674
+Recall: 0.9201910917521428
+fbeta: 0.9366418764302059
+
+===Black===
+Precision: 0.9552631578947368
+Recall: 0.937984496124031
+fbeta: 0.9465449804432856
+
+===Asian-Pac-Islander===
+Precision: 0.9635036496350365
+Recall: 0.9565217391304348
+fbeta: 0.9600000000000001
+
+===Amer-Indian-Eskimo===
+Precision: 1.0
+Recall: 1.0
+fbeta: 1.0
+
+===Other===
+Precision: 0.8214285714285714
+Recall: 0.92
+fbeta: 0.8679245283018867
